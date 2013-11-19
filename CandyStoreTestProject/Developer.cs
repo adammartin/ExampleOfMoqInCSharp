@@ -8,9 +8,9 @@ namespace CandyStoreTestProject
 {
     class Developer
     {
-        public void BuyTastiestCandy(ICandyShop candyShop)
+        public RawCandy BuyTastiestCandy(ICandyShop candyShop)
         {
-            candyShop.BuyMostPopularCandy();
+            return candyShop.BuyMostPopularCandy();
         }
     }
 }
