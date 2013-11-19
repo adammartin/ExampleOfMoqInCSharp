@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Candy;
 
-namespace CandyStoreTestProject
+namespace Candy
 {
-    class Developer
+    public class Developer
     {
+        public RawCandy BuyTastiestCandy(ICandyShop candyShop)
+        {
+            return candyShop.BuyMostPopularCandy();
+        }
     }
 }

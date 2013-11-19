@@ -16,7 +16,10 @@ namespace CandyStoreTestProject
             _aDeveloper = new Developer();
             _fakeCandyShop = A.Fake<ICandyShop>();
         }
-
+        
+        /***************
+         * Moq Example
+         * *************/
         [Fact]
         public void DeveloperWillBuyCandyFromTheCandyStore()
         {
@@ -24,7 +27,10 @@ namespace CandyStoreTestProject
             var theCandy = _aDeveloper.BuyTastiestCandy(_mockCandyShop.Object);
             theCandy.Should().Be(_expectedCandy);
         }
-
+        
+        /***************
+         * FakeItEasy Example
+         * *************/
         [Fact]
         public void DeveloperWillBuyCandyFromTheCandyStoreWithFake()
         {
