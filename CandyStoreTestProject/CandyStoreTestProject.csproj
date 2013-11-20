@@ -67,6 +67,7 @@
     <Compile Include="DeveloperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\CandyShopTestWithMoq.cs" />
+    <Compile Include="Search\CandyShopTestWithFakeIt.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Candy\Candy.csproj">

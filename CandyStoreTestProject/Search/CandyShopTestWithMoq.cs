@@ -24,11 +24,11 @@ namespace CandyStoreTestProject.Search
         }
 
         [Fact]
-        public void BuyMostPopularCandyWillSearchLocalSearchEngineForMostPopularResults()
+        public void BuyMostPopularCandyWillExecuteTheLocalSearchAndWillReturnTheTopItemInTheSearchResults()
         {
-            _mockLocalSearchEngine.Setup(aSearch => aSearch.Search(It.IsAny<SearchCriteria>())).Returns(_localSearchResult).Verifiable();
-            _candyShop.BuyMostPopularCandy();
-            _mockLocalSearchEngine.Verify();
+            _mockLocalSearchEngine.Setup(aSearch => aSearch.Search(It.Is<SearchCriteria>(criteria => criteria.Equals(_searchCriteria)))).Returns(_localSearchResult);
+            var theCandy = _candyShop.BuyMostPopularCandy();
+            theCandy.Should().Be(_localExpectedCandy);
         }
 
         [Fact]
@@ -38,14 +38,6 @@ namespace CandyStoreTestProject.Search
             _mockLocalSearchEngine.Setup(aSearch => aSearch.Search(It.Is<SearchCriteria>(criteria => criteria.Equals(searchCriteria)))).Returns(_localSearchResult).Verifiable();
             _candyShop.BuyMostPopularCandy();
             _mockLocalSearchEngine.Verify();
-        }
-
-        [Fact]
-        public void BuyMostPopularCandyWillExecuteTheLocalSearchAndWillReturnTheTopItemInTheSearchResults()
-        {
-            _mockLocalSearchEngine.Setup(aSearch => aSearch.Search(It.Is<SearchCriteria>(criteria => criteria.Equals(_searchCriteria)))).Returns(_localSearchResult);
-            var theCandy = _candyShop.BuyMostPopularCandy();
-            theCandy.Should().Be(_localExpectedCandy);
         }
 
         [Fact]
