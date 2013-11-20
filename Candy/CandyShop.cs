@@ -1,4 +1,5 @@
 ﻿using System;
+using Candy.Search;
 
 namespace Candy
 {
@@ -15,9 +16,18 @@ namespace Candy
 
     public class CandyShop : ICandyShop
     {
+        public CandyShop(ISearchEngine localSearchEngine, ISearchEngine nationalSearchEngine)
+        {
+            _localSearchEngine = localSearchEngine;
+            _nationalSearchEngine = nationalSearchEngine;
+        }
+
         public RawCandy BuyMostPopularCandy()
         {
-            throw new NotImplementedException("You should be using the Mock silly!");
+            return _localSearchEngine.Search(new SearchCriteria(new SearchIndex(0, 10), "TopSeller")).GetCandyResults()[0];
         }
+
+        private readonly ISearchEngine _localSearchEngine;
+        private readonly ISearchEngine _nationalSearchEngine;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Candy.Search
 {
-    struct SearchResult
+    public struct SearchResult
     {
         public SearchResult(SearchIndex searchIndex, RawCandy[] candy)
         {
