@@ -24,10 +24,16 @@ namespace Candy
 
         public RawCandy BuyMostPopularCandy()
         {
-            return _localSearchEngine.Search(new SearchCriteria(new SearchIndex(0, 10), "TopSeller")).GetCandyResults()[0];
+            var searchResult = _localSearchEngine.Search(SearchCriteria);
+            if (searchResult.GetSearchIndex().Start() == searchResult.GetSearchIndex().End())
+            {
+                return _nationalSearchEngine.Search(SearchCriteria).GetCandyResults()[0];
+            }
+            return searchResult.GetCandyResults()[0];
         }
 
         private readonly ISearchEngine _localSearchEngine;
         private readonly ISearchEngine _nationalSearchEngine;
+        private static readonly SearchCriteria SearchCriteria = new SearchCriteria(new SearchIndex(0, 10), "TopSeller");
     }
 }
